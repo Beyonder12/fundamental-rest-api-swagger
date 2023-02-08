@@ -1,11 +1,14 @@
 package com.beyonder.fundamentalrestapiswagger.controller;
 
 import com.beyonder.fundamentalrestapiswagger.dto.BookDTO;
+import com.beyonder.fundamentalrestapiswagger.dto.DataBookDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -34,6 +37,14 @@ public class BookController {
         return new ResponseEntity<>(bookDTO, HttpStatus.OK);
     }
 
+    @PostMapping
+    public List<String> createBooks(@RequestBody DataBookDTO dataBookDTO) {
+        List<String> dataList = new ArrayList<>();
+        for(BookDTO book : dataBookDTO.getBooks()) {
+            dataList.add(book.getName());
+        }
+        return dataList;
+    }
 
 
 
